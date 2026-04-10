@@ -1,0 +1,6 @@
+{
+  "arima": 0.2,
+  "xgboost": 0.4,
+  "lstm": 0.3,
+  "queuing": 0.1
+}

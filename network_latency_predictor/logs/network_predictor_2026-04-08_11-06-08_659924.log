@@ -1,0 +1,9 @@
+2026-04-08 11:06:08.663 | INFO     | config.logging_config:setup_logging:55 - Logging configured
+2026-04-08 11:06:08.663 | INFO     | __main__:main:55 - Loading data from data/mock_telemetry.csv
+2026-04-08 11:06:08.785 | INFO     | __main__:main:57 - Loaded 604800 rows
+2026-04-08 11:06:08.785 | INFO     | __main__:main:62 - Subsampling to 200000 rows for training speed
+2026-04-08 11:06:08.788 | INFO     | training.trainer:run:79 - ============================================================
+2026-04-08 11:06:08.788 | INFO     | training.trainer:run:80 - TRAINING PIPELINE START
+2026-04-08 11:06:08.788 | INFO     | training.trainer:run:81 - ============================================================
+2026-04-08 11:06:08.788 | INFO     | training.trainer:run:84 - Step 1/6: Feature engineering
+2026-04-08 11:06:08.794 | INFO     | features.pipeline:transform:59 - FeaturePipeline.transform — input rows: 200000

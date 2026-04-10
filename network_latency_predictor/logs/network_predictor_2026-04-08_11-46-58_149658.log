@@ -1,0 +1,39 @@
+2026-04-08 11:46:58.152 | INFO     | config.logging_config:setup_logging:55 - Logging configured
+2026-04-08 11:46:58.152 | INFO     | __main__:main:55 - Loading data from data/mock_telemetry.csv
+2026-04-08 11:46:58.259 | INFO     | __main__:main:57 - Loaded 604800 rows
+2026-04-08 11:46:58.259 | INFO     | __main__:main:62 - Subsampling to 200000 rows for training speed
+2026-04-08 11:46:58.262 | INFO     | training.trainer:run:79 - ============================================================
+2026-04-08 11:46:58.262 | INFO     | training.trainer:run:80 - TRAINING PIPELINE START
+2026-04-08 11:46:58.262 | INFO     | training.trainer:run:81 - ============================================================
+2026-04-08 11:46:58.262 | INFO     | training.trainer:run:84 - Step 1/6: Feature engineering
+2026-04-08 11:46:58.267 | INFO     | features.pipeline:transform:60 - FeaturePipeline.transform — input rows: 200000
+2026-04-08 11:47:01.825 | INFO     | features.pipeline:transform:132 - FeaturePipeline.transform — output rows: 199700, columns: 138
+2026-04-08 11:47:01.833 | INFO     | training.trainer:run:88 - Step 2/6: Creating targets and splits
+2026-04-08 11:47:01.944 | INFO     | training.dataset:create_targets:87 - Created targets — 199640 rows remain after dropping NaN tails
+2026-04-08 11:47:01.966 | INFO     | training.dataset:train_val_test_split:116 - Split: train=139748, val=29946, test=29946
+2026-04-08 11:47:02.076 | WARNING  | training.trainer:run:136 - MLflow setup failed (will continue without): API request to endpoint /api/2.0/mlflow/experiments/get-by-name failed with error code 403 != 200. Response body: ''
+2026-04-08 11:47:02.077 | INFO     | training.trainer:run:150 - Step 3/6: Training models
+2026-04-08 11:47:02.077 | INFO     | training.trainer:run:153 - Training ARIMA...
+2026-04-08 11:47:03.795 | INFO     | models.arima_model:fit:79 - ARIMA best order: (1, 1, 2) with AIC=10102.62
+2026-04-08 11:47:03.953 | INFO     | models.ensemble:add_model:45 - Ensemble: added model 'arima'
+2026-04-08 11:47:03.953 | INFO     | training.trainer:run:159 - ARIMA trained successfully
+2026-04-08 11:47:03.953 | INFO     | training.trainer:run:164 - Training XGBoost...
+2026-04-08 11:47:03.953 | INFO     | models.xgboost_model:fit:86 - Training XGBRegressor for rtt_10s
+2026-04-08 11:47:13.102 | INFO     | models.xgboost_model:fit:86 - Training XGBRegressor for rtt_30s
+2026-04-08 11:47:22.441 | INFO     | models.xgboost_model:fit:86 - Training XGBRegressor for rtt_60s
+2026-04-08 11:47:31.232 | INFO     | models.xgboost_model:fit:104 - Training XGBRegressor for jitter
+2026-04-08 11:47:38.710 | INFO     | models.xgboost_model:fit:118 - Training XGBClassifier for congestion
+2026-04-08 11:47:45.359 | INFO     | models.ensemble:add_model:45 - Ensemble: added model 'xgboost'
+2026-04-08 11:47:45.359 | INFO     | training.trainer:run:173 - XGBoost trained successfully
+2026-04-08 11:47:45.359 | INFO     | training.trainer:run:178 - Training LSTM...
+2026-04-08 11:54:58.762 | INFO     | models.lstm_model:fit:259 - Epoch 10/50 — train_loss=13.1155
+2026-04-08 11:59:13.250 | INFO     | models.lstm_model:fit:255 - Early stopping at epoch 16
+2026-04-08 11:59:13.638 | INFO     | models.ensemble:add_model:45 - Ensemble: added model 'lstm'
+2026-04-08 11:59:13.664 | INFO     | training.trainer:run:186 - LSTM trained successfully
+2026-04-08 11:59:13.664 | INFO     | training.trainer:run:191 - Training Queuing Model...
+2026-04-08 11:59:13.715 | INFO     | models.queuing_model:fit:76 - QueuingModel fitted: mu=909.2, type=md1, baseline_rtt=18.3ms
+2026-04-08 11:59:13.716 | INFO     | models.ensemble:add_model:45 - Ensemble: added model 'queuing'
+2026-04-08 11:59:13.716 | INFO     | training.trainer:run:207 - Queuing model trained successfully
+2026-04-08 11:59:13.716 | INFO     | training.trainer:run:212 - Step 4/6: Evaluating models
+2026-04-08 11:59:13.784 | INFO     | training.evaluator:evaluate_all:126 - Evaluation report: {'regression': {'10s': {'mae': 6.4911, 'rmse': 9.7731, 'mape': 29.1811, 'r2': -0.5721}, '30s': {'mae': 6.4843, 'rmse': 9.7685, 'mape': 29.1581, 'r2': -0.5702}, '60s': {'mae': 6.4764, 'rmse': 9.7636, 'mape': 29.131, 'r2': -0.5682}}, 'congestion': {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'auc_roc': 0.5, 'average_precision': 0.0239}}
+2026-04-08 11:59:14.009 | INFO     | training.evaluator:evaluate_all:126 - Evaluation report: {'regression': {'10s': {'mae': 2.6967, 'rmse': 4.7556, 'mape': 14.7158, 'r2': 0.6278}, '30s': {'mae': 2.8954, 'rmse': 6.1736, 'mape': 15.3657, 'r2': 0.3729}, '60s': {'mae': 3.0511, 'rmse': 6.888, 'mape': 15.7333, 'r2': 0.2195}}, 'congestion': {'precision': 0.9814, 'recall': 0.7378, 'f1': 0.8424, 'auc_roc': 0.9874, 'average_precision': 0.9638}}
