@@ -87,16 +87,28 @@ python scripts/sync_models.py --export
 python scripts/sync_models.py --verify
 ```
 
-### 5. Start services (Docker)
+### 5. Start Application Services (Docker)
+
+To run the project, use Docker Compose to spin up the entire cluster of 5 microservices in the background:
 
 ```bash
 docker-compose -f docker/docker-compose.yml up -d
 ```
 
-### 6. Verify
+### 6. Verify & Monitor
 
+**Backend Health Check:** Verify the API and AI predictive model are operational:
 ```bash
 curl http://localhost:8000/health
+```
+
+**Live Dashboard:** Open your browser and navigate to **[http://localhost:3000](http://localhost:3000)** to view the live Grafana telemetry dashboard! *(Login with `admin` and your `.env` configured password)*.
+
+### 7. Shutdown
+
+When you are finished, gracefully stop all containers using:
+```bash
+docker-compose -f docker/docker-compose.yml down
 ```
 
 ## API Reference
