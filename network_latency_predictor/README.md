@@ -1,8 +1,12 @@
-# Network Latency Predictor
+# ⚡️ Network Latency Predictor
 
-A production-ready system for predicting network latency (RTT) and congestion probability using an ensemble of ARIMA, XGBoost, LSTM, and queuing-theory models.
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg?style=flat&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?style=flat&logo=Docker&logoColor=white)](https://www.docker.com/)
 
-## Architecture
+A production-ready system for predicting network latency (RTT) and congestion probability using an ensemble of ARIMA, XGBoost, LSTM, and queuing-theory models natively pulling real telemetry data.
+
+## 🏗 Architecture
 
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
@@ -204,11 +208,11 @@ class TransformerModel(BaseLatencyModel):
 3. Register in the ensemble at `models/ensemble.py`
 4. Add weight in `config/settings.py` → `ENSEMBLE_WEIGHTS`
 
-## Grafana Dashboard Setup
+## 📊 Grafana Dashboard Setup
 
-1. Open Grafana at `http://localhost:3000` (admin/admin)
-2. Add Prometheus data source: `http://prometheus:9090`
-3. Import dashboard or create panels with these queries:
+1. Open Grafana at `http://localhost:3000` (Login with `admin` and the password defined in your `.env` under `GRAFANA_ADMIN_PASSWORD`, defaults to `admin`).
+2. The Prometheus data source (`http://prometheus:9090`) and internal dashboards are **automatically provisioned** on startup!
+3. To customize, explore panels with these native queries:
    - `nlp_predictions_total` — total predictions served
    - `nlp_predicted_rtt_ms{horizon="10s"}` — current predicted RTT
    - `nlp_congestion_probability` — congestion probability gauge

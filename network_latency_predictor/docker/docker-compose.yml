@@ -84,7 +84,7 @@ services:
     depends_on:
       - prometheus
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
     volumes:
       - ./grafana_dashboards:/etc/grafana/provisioning/dashboards
       - ./grafana_datasources:/etc/grafana/provisioning/datasources
