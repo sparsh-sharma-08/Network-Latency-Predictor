@@ -9,7 +9,7 @@
 [![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-7.6.0-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
 [![Grafana](https://img.shields.io/badge/Grafana-10.4.2-F46800?style=for-the-badge&logo=grafana&logoColor=white)](https://grafana.com/)
 [![Docker Compose](https://img.shields.io/badge/Docker_Compose-Cluster-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![Tests](https://img.shields.io/badge/Tests-30%2F30%20Passed-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](file:///network_latency_predictor/tests)
+[![Tests](https://img.shields.io/badge/Tests-30%2F30%20Passed-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](tests)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <p align="center">
@@ -265,7 +265,7 @@ where $\rho$ represents channel utilization. When utilization nears $1.0$, queui
 
 ```bash
 git clone https://github.com/sparsh-sharma-08/Network-Latency-Predictor.git
-cd Network-Latency-Predictor/network_latency_predictor
+cd Network-Latency-Predictor
 
 # Create and activate a virtual environment
 python3 -m venv venv
@@ -529,7 +529,7 @@ curl http://localhost:8000/retrain/8d39f4e2-63bc-42b7-a365-8b248a39e941
 ## 📁 Project Directory Structure
 
 ```text
-network_latency_predictor/
+Network-Latency-Predictor/
 ├── api/                             # FastAPI application & endpoints
 │   ├── kafka_consumer.py            # Async background Kafka stream consumer
 │   ├── main.py                      # Application lifespan, CORS, and routing
