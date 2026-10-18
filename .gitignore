@@ -7,3 +7,5 @@ network_latency_predictor/.env
 network_latency_predictor/docker/mlflow_data/
 network_latency_predictor/models/saved/
 network_latency_predictor/logs/
+.pytest_cache/
+network_latency_predictor/.pytest_cache/
